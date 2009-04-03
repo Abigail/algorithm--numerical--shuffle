@@ -1,15 +1,23 @@
-package Algorithms::Numerical::Shuffle;
+package Algorithm::Numerical::Shuffle;
 
 ################################################################################
 #
 # $Author: abigail $
 #
-# $Date: 1998/04/23 17:45:12 $
+# $Date: 1999/03/01 20:54:06 $
 #
-# $Id: Shuffle.pm,v 1.1 1998/04/23 17:45:12 abigail Exp $
+# $Id: Shuffle.pm,v 1.3 1999/03/01 20:54:06 abigail Exp abigail $
 #
 # $Log: Shuffle.pm,v $
-# Revision 1.1  1998/04/23 17:45:12  abigail
+# Revision 1.3  1999/03/01 20:54:06  abigail
+# Changed package name to Algorithm::*
+# Changed license.
+#
+# Revision 1.2  1998/09/09 20:48:12  abigail
+# - Make shuffle() work with empty lists.
+# - Changed license to Artistic only.
+#
+# Revision 1.1  1998/04/23 17:58:07  abigail
 # Initial revision
 #
 #
@@ -26,9 +34,10 @@ use vars qw /$VERSION @ISA @EXPORT @EXPORT_OK/;
 @EXPORT    = qw //;
 @EXPORT_OK = qw /shuffle/;
 
-($VERSION) = '$Revision: 1.1 $' =~ /(\d+\.\d+)/;
+($VERSION) = '$Revision: 1.3 $' =~ /(\d+\.\d+)/;
 
 sub shuffle {
+    return @_ if !@_ || ref $_ [0] eq 'ARRAY' && !@$_ [0];
     my $array = @_ == 1 && ref $_ [0] eq 'ARRAY' ? shift : [@_];
     for (my $i = @$array; -- $i;) {
         my $r = int rand ($i + 1);
@@ -56,7 +65,7 @@ Algorithms::Numerical::Shuffle - Shuffle a list.
 =head1 DESCRIPTION
 
 C<shuffle> performs a one pass, fair shuffle on a list. If the list is
-passed as a reference to an array, the shuffling is done in situ.
+passed as a reference to an array, the shuffle is done in situ.
 
 The subroutine returns the list in list context, and a reference to
 the list in scalar context.
@@ -76,7 +85,7 @@ by Fisher and Yates [2], and later by Durstenfeld [1].
 
 Salfi [4] points to a big caveat. If the outcome of a random generator
 is solely based on the value of the previous outcome, like a linear
-congruential method, then the outcome of a shuffling depends on exactly
+congruential method, then the outcome of a shuffle depends on exactly
 three things: the shuffling algorithm, the input and the seed of the
 random generator. Hence, for a given list and a given algorithm, the
 outcome of the shuffle is purely based on the seed. Many modern computers
@@ -113,10 +122,18 @@ R. Salfi: I<COMPSTAT 1974>. Vienna: 1974, pp 28 - 35.
 
 =head1 HISTORY
 
-    $Date: 1998/04/23 17:45:12 $
+    $Date: 1999/03/01 20:54:06 $
 
     $Log: Shuffle.pm,v $
-    Revision 1.1  1998/04/23 17:45:12  abigail
+    Revision 1.3  1999/03/01 20:54:06  abigail
+    Changed package name to Algorithm::*
+    Changed license.
+
+    Revision 1.2  1998/09/09 20:48:12  abigail
+    - Make shuffle() work with empty lists.
+    - Changed license to Artistic only.
+
+    Revision 1.1  1998/04/23 17:58:07  abigail
     Initial revision
 
 
@@ -126,10 +143,25 @@ This package was written by Abigail.
 
 =head1 COPYRIGHT
 
-Copyright 1998 by Abigail.
+Copyright 1998, 1999 by Abigail.
 
-You may use, distribute and modify this package under the same
-terms as Perl.
+=head1 LICENSE
+
+This package is free and open software.
+
+You may use, copy, modify, distribute and sell this package or any
+modifications there of in any form you wish, provided you do not do any
+of the following:
+
+    - claim that any of the original code was written by someone
+      else than the original author(s).
+    - restrict someone in using, copying, modifying, distributing or
+      selling this program or module or any modifications of it.
+
+
+THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 =cut
 
