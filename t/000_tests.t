@@ -51,7 +51,7 @@ eval {
     my @b  = shuffle @a;
     my @c  = sort {$a <=> $b} @b;
 
-    if (@a != @c || "@a" != "@c") {
+    if (@a != @c || "@a" ne "@c") {
         print "not ok ", $test_num ++, "\n";
     }
     else {
@@ -67,7 +67,7 @@ eval {
     shuffle $B;
     my @C  = sort {$a <=> $b} @$B;
 
-    if (@$A != @C || "@$A" != "@C") {
+    if (@$A != @C || "@$A" ne "@C") {
         print "not ok ", $test_num ++, "\n";
     }
     else {
