@@ -4,11 +4,15 @@ package Algorithm::Numerical::Shuffle;
 #
 # $Author: abigail $
 #
-# $Date: 1999/03/01 20:54:06 $
+# $Date: 2000/03/08 05:57:40 $
 #
-# $Id: Shuffle.pm,v 1.3 1999/03/01 20:54:06 abigail Exp abigail $
+# $Id: Shuffle.pm,v 1.4 2000/03/08 05:57:40 abigail Exp abigail $
 #
 # $Log: Shuffle.pm,v $
+# Revision 1.4  2000/03/08 05:57:40  abigail
+# Fixed bug that prevented in situ shuffling.
+# Changed the wording of the license once again. (MIT/X style)
+#
 # Revision 1.3  1999/03/01 20:54:06  abigail
 # Changed package name to Algorithm::*
 # Changed license.
@@ -34,10 +38,10 @@ use vars qw /$VERSION @ISA @EXPORT @EXPORT_OK/;
 @EXPORT    = qw //;
 @EXPORT_OK = qw /shuffle/;
 
-($VERSION) = '$Revision: 1.3 $' =~ /(\d+\.\d+)/;
+($VERSION) = '$Revision: 1.4 $' =~ /(\d+\.\d+)/;
 
 sub shuffle {
-    return @_ if !@_ || ref $_ [0] eq 'ARRAY' && !@$_ [0];
+    return @_ if !@_ || ref $_ [0] eq 'ARRAY' && !@{$_ [0]};
     my $array = @_ == 1 && ref $_ [0] eq 'ARRAY' ? shift : [@_];
     for (my $i = @$array; -- $i;) {
         my $r = int rand ($i + 1);
@@ -51,11 +55,11 @@ __END__
 
 =head1 NAME
 
-Algorithms::Numerical::Shuffle - Shuffle a list.
+Algorithm::Numerical::Shuffle - Shuffle a list.
 
 =head1 SYNOPSIS
 
-    use Algorithms::Numerical::Shuffle qw /shuffle/;
+    use Algorithm::Numerical::Shuffle qw /shuffle/;
 
     @shuffled = shuffle (1, 2, 3, 4, 5, 6, 7);
 
@@ -122,9 +126,13 @@ R. Salfi: I<COMPSTAT 1974>. Vienna: 1974, pp 28 - 35.
 
 =head1 HISTORY
 
-    $Date: 1999/03/01 20:54:06 $
+    $Date: 2000/03/08 05:57:40 $
 
     $Log: Shuffle.pm,v $
+    Revision 1.4  2000/03/08 05:57:40  abigail
+    Fixed bug that prevented in situ shuffling.
+    Changed the wording of the license once again. (MIT/X style)
+
     Revision 1.3  1999/03/01 20:54:06  abigail
     Changed package name to Algorithm::*
     Changed license.
@@ -143,25 +151,28 @@ This package was written by Abigail.
 
 =head1 COPYRIGHT
 
-Copyright 1998, 1999 by Abigail.
+Copyright 1998, 1999, 2000 by Abigail.
 
 =head1 LICENSE
 
-This package is free and open software.
+This program is copyright 1998-2000 by Abigail.
+ 
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the "Software"),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:
+     
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
 
-You may use, copy, modify, distribute and sell this package or any
-modifications there of in any form you wish, provided you do not do any
-of the following:
-
-    - claim that any of the original code was written by someone
-      else than the original author(s).
-    - restrict someone in using, copying, modifying, distributing or
-      selling this program or module or any modifications of it.
-
-
-THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
-WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
-MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
+OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 
 =cut
-
