@@ -1,4 +1,6 @@
 MANIFEST
+Changes
+README
 Makefile.PL
 lib/Algorithm/Numerical/Shuffle.pm
 t/000_tests.t
