@@ -3,5 +3,5 @@ use ExtUtils::MakeMaker;
 # the contents of the Makefile that is written.
 WriteMakefile(
     'NAME'	=> 'Algorithm::Numerical::Shuffle',
-    'VERSION_FROM' => 'Shuffle.pm', # finds $VERSION
+    'VERSION_FROM' => 'lib/Algorithm/Numerical/Shuffle.pm', # finds $VERSION
 );
