@@ -1,44 +1,17 @@
 package Algorithm::Numerical::Shuffle;
 
-################################################################################
-#
-# $Author: abigail $
-#
-# $Date: 2000/03/08 05:57:40 $
-#
-# $Id: Shuffle.pm,v 1.4 2000/03/08 05:57:40 abigail Exp abigail $
-#
-# $Log: Shuffle.pm,v $
-# Revision 1.4  2000/03/08 05:57:40  abigail
-# Fixed bug that prevented in situ shuffling.
-# Changed the wording of the license once again. (MIT/X style)
-#
-# Revision 1.3  1999/03/01 20:54:06  abigail
-# Changed package name to Algorithm::*
-# Changed license.
-#
-# Revision 1.2  1998/09/09 20:48:12  abigail
-# - Make shuffle() work with empty lists.
-# - Changed license to Artistic only.
-#
-# Revision 1.1  1998/04/23 17:58:07  abigail
-# Initial revision
-#
-#
-#
-################################################################################
+use 5.006;
 
 use strict;
-use Exporter;
+use warnings;
+no  warnings 'syntax';
+use Exporter ();
 
+our @ISA       = qw /Exporter/;
+our @EXPORT    = qw //;
+our @EXPORT_OK = qw /shuffle/;
 
-use vars qw /$VERSION @ISA @EXPORT @EXPORT_OK/;
-
-@ISA       = qw /Exporter/;
-@EXPORT    = qw //;
-@EXPORT_OK = qw /shuffle/;
-
-($VERSION) = '$Revision: 1.4 $' =~ /(\d+\.\d+)/;
+our $VERSION   = '2009040301';
 
 sub shuffle {
     return @_ if !@_ || ref $_ [0] eq 'ARRAY' && !@{$_ [0]};
@@ -124,39 +97,26 @@ R. Salfi: I<COMPSTAT 1974>. Vienna: 1974, pp 28 - 35.
 
 =back
 
-=head1 HISTORY
+=head1 SEE ALSO
 
-    $Date: 2000/03/08 05:57:40 $
+C<< List::Util >> also has a C<< shuffle >> function which uses a similar
+algorithm. But since it's written in C, it's much faster. For all practical
+purposes, C<< List::Util >> supersedes this module. Unless you really need
+in situ sorting.
 
-    $Log: Shuffle.pm,v $
-    Revision 1.4  2000/03/08 05:57:40  abigail
-    Fixed bug that prevented in situ shuffling.
-    Changed the wording of the license once again. (MIT/X style)
-
-    Revision 1.3  1999/03/01 20:54:06  abigail
-    Changed package name to Algorithm::*
-    Changed license.
-
-    Revision 1.2  1998/09/09 20:48:12  abigail
-    - Make shuffle() work with empty lists.
-    - Changed license to Artistic only.
-
-    Revision 1.1  1998/04/23 17:58:07  abigail
-    Initial revision
-
+=head1 DEVELOPMENT
+ 
+The current sources of this module are found on github,
+L<< git://github.com/Abigail/algorithm--numerical--shuffle.git >>.
 
 =head1 AUTHOR
 
-This package was written by Abigail.
+Abigail L<< mailto:cpan@abigail.be >>.
 
-=head1 COPYRIGHT
+=head1 COPYRIGHT and LICENSE
 
-Copyright 1998, 1999, 2000 by Abigail.
+Copyright (C) 1998 - 2000, 2009 by Abigail.
 
-=head1 LICENSE
-
-This program is copyright 1998-2000 by Abigail.
- 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
 to deal in the Software without restriction, including without limitation
