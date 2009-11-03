@@ -11,7 +11,7 @@ our @ISA       = qw /Exporter/;
 our @EXPORT    = qw //;
 our @EXPORT_OK = qw /shuffle/;
 
-our $VERSION   = '2009040301';
+our $VERSION   = '2009110301';
 
 sub shuffle {
     return @_ if !@_ || ref $_ [0] eq 'ARRAY' && !@{$_ [0]};
